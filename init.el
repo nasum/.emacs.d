@@ -16,7 +16,11 @@
 ;; スタートアップメッセージを非表示
 (setq inhibit-startup-screen t)
 
+;; モード設定
 ;; ターミナル以外はツールバー、スクロールバーを非表示にする
 (when window-system
   (tool-bar-mode 0)
   (scroll-bar-mode 0))
+
+;; カラム番号を表示
+(column-number-mode t)
