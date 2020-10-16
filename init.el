@@ -26,3 +26,9 @@
 (column-number-mode t)
 ;; ファイルサイズを表示
 (size-indication-mode t)
+;; 時計を表示
+(setq display-time-interval 1)
+(setq display-time-day-and-date t)
+(setq display-time-string-forms
+      '((format "%s/%s/%s(%s) %s:%s:%s" year month day dayname 24-hours minutes seconds)))
+(display-time-mode t)
