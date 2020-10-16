@@ -8,3 +8,8 @@
   (write-region "" nil custom-file))
 ;; カスタムファイルを読み込む
 (load custom-file)
+
+;; ターミナル以外はツールバー、スクロールバーを非表示にする
+(when window-system
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0))
