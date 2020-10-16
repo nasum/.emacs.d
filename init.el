@@ -1,3 +1,7 @@
+;; 設定ファイルと設定の場所をこのinit.el起点にする
+(setq user-init-file (or load-file-name (buffer-file-name)))
+(setq user-emacs-directory (file-name-directory user-init-file))
+
 ;; add load path
 (add-to-list 'load-path "./elisp")
 
