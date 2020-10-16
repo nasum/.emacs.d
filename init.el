@@ -24,3 +24,5 @@
 
 ;; カラム番号を表示
 (column-number-mode t)
+;; ファイルサイズを表示
+(size-indication-mode t)
