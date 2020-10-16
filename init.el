@@ -9,6 +9,9 @@
 ;; カスタムファイルを読み込む
 (load custom-file)
 
+;; スタートアップメッセージを非表示
+(setq inhibit-startup-screen t)
+
 ;; ターミナル以外はツールバー、スクロールバーを非表示にする
 (when window-system
   (tool-bar-mode 0)
