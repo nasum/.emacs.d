@@ -13,15 +13,17 @@
 ;; カスタムファイルを読み込む
 (load custom-file)
 
-;; packageの設定
-(require 'package)
-(add-to-list
- 'package-archives
- '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list
- 'package-archives
- '("gnu" . "http://elpa.gnu.org/packages/") t)
-(package-initialize)
+;; el-get
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+
+(add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
 ;; スタートアップメッセージを非表示
 (setq inhibit-startup-screen t)
@@ -75,3 +77,12 @@
 
 ;;更新されたファイルを自動的に読み込み直す
 (global-auto-revert-mode t)
+
+;;packages
+(el-get-bundle neotree)
+
+
+;;neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
