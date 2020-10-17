@@ -38,3 +38,6 @@
 
 ;;行番号を常に表示する
 (global-linum-mode t)
+
+;;TABの表示幅を常に4にする
+(setq-default tab-width 4)
