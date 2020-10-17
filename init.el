@@ -25,6 +25,36 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
+;;leaf
+(eval-and-compile
+  (when (or load-file-name byte-compile-current-file)
+    (setq user-emacs-directory
+          (expand-file-name
+           (file-name-directory (or load-file-name byte-compile-current-file))))))
+
+(eval-and-compile
+  (customize-set-variable
+   'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+                       ("melpa" . "https://melpa.org/packages/")
+                       ("org"   . "https://orgmode.org/elpa/")))
+  (package-initialize)
+  (unless (package-installed-p 'leaf)
+    (package-refresh-contents)
+    (package-install 'leaf))
+
+  (leaf leaf-keywords
+    :ensure t
+    :init
+    ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
+    (leaf hydra :ensure t)
+    (leaf el-get :ensure t)
+    (leaf blackout :ensure t)
+
+    :config
+    ;; initialize leaf-keywords.el
+    (leaf-keywords-init)))
+
+
 ;; スタートアップメッセージを非表示
 (setq inhibit-startup-screen t)
 
@@ -78,11 +108,17 @@
 ;;更新されたファイルを自動的に読み込み直す
 (global-auto-revert-mode t)
 
+(provide 'init)
+
 ;;packages
-(el-get-bundle neotree)
-
-
-;;neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+(leaf neotree
+  :el-get t
+  :bind
+  (
+   ("<f8>" . neotree-toggle)
+   )
+  :hook
+  (neo-after-create .
+                    (lambda (&rest _) (display-line-numbers-mode -1)))
+  )
 
