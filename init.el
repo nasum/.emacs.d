@@ -13,6 +13,16 @@
 ;; カスタムファイルを読み込む
 (load custom-file)
 
+;; packageの設定
+(require 'package)
+(add-to-list
+ 'package-archives
+ '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list
+ 'package-archives
+ '("gnu" . "http://elpa.gnu.org/packages/") t)
+(package-initialize)
+
 ;; スタートアップメッセージを非表示
 (setq inhibit-startup-screen t)
 
