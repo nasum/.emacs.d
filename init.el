@@ -55,3 +55,10 @@
   "hl-line's my face")
 (setq hl-line-face 'my-hl-line-face)
 (global-hl-line-mode t)
+
+;;対応する括弧を強調して表示する
+(setq show-paren-delay 0)
+(show-paren-mode t)
+(setq show-paren-style 'expression)
+(set-face-background 'show-paren-match-face nil)
+(set-face-underline-p 'show-paren-match-face "darkgreen")
