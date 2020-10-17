@@ -21,7 +21,6 @@
 (when window-system
   (tool-bar-mode 0)
   (scroll-bar-mode 0))
-
 ;; カラム番号を表示
 (column-number-mode t)
 ;; ファイルサイズを表示
@@ -32,3 +31,7 @@
 (setq display-time-string-forms
       '((format "%s/%s/%s(%s) %s:%s:%s" year month day dayname 24-hours minutes seconds)))
 (display-time-mode t)
+
+
+;;タイトルバーにファイルのフルパスを表示
+(setq frame-title-format "%f")
