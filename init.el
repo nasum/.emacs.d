@@ -35,3 +35,6 @@
 
 ;;タイトルバーにファイルのフルパスを表示
 (setq frame-title-format "%f")
+
+;;行番号を常に表示する
+(global-linum-mode t)
