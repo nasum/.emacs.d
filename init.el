@@ -60,5 +60,8 @@
 (setq show-paren-delay 0)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
-(set-face-background 'show-paren-match-face nil)
-(set-face-underline-p 'show-paren-match-face "darkgreen")
+(set-face-background 'show-paren-match nil)
+(set-face-underline-p 'show-paren-match "darkgreen")
+
+;;更新されたファイルを自動的に読み込み直す
+(global-auto-revert-mode t)
