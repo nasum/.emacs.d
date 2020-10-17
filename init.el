@@ -44,3 +44,14 @@
 
 ;;インデントにタブ文字を使用しない
 (setq-default indent-tabs-mode nil)
+
+;;現在行のハイライト
+(defface my-hl-line-face
+  '((((class color) (background dark))
+	 (:background "NabyBlue" t))
+	(((class color) (background light))
+	 (:background "LightSkyBlue" t))
+	(t(:bold t)))
+  "hl-line's my face")
+(setq hl-line-face 'my-hl-line-face)
+(global-hl-line-mode t)
