@@ -1,4 +1,6 @@
-(setq el-get-lock-package-versions 'nil)
+(setq el-get-lock-package-versions
+      '((memoize :checksum "51b075935ca7070f62fae1d69fe0ff7d8fa56fdd")
+        (all-the-icons\.el :checksum "6917b08f64dd8487e23769433d6cb9ba11f4152f")))
 (setq el-get-lock-locked-packages 'nil)
 (setq el-get-lock-unlocked-packages
       '(el-get-lock))

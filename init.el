@@ -111,20 +111,32 @@
 (provide 'init)
 
 ;;packages
+
+(leaf tarao/el-get-lock
+  :el-get t
+  )
+(leaf domtronn/all-the-icons.el
+  :el-get t
+  )
+(leaf memoize
+  :el-get t
+  )
 (leaf neotree
   :el-get t
   :bind
   (
    ("<f8>" . neotree-toggle)
    )
+  :config
+  (setq-default neo-show-hidden-files t)
+  (setq neo-create-file-auto-open t)
+  (setq-default neo-keymap-style 'concise)
+  (setq neo-theme 'icons)
   :hook
   (neo-after-create .
                     (lambda (&rest _) (display-line-numbers-mode -1)))
   )
 
-(leaf tarao/el-get-lock
-  :el-get t
-  )
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
