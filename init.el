@@ -3,7 +3,7 @@
 (setq user-emacs-directory (file-name-directory user-init-file))
 
 ;; add load path
-(add-to-list 'load-path "./elisp")
+(add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
 ;; カスタムファイルを別ファイルにする
 (setq custom-file (locate-user-emacs-file "custom.el"))
@@ -121,17 +121,39 @@
 (leaf memoize
   :el-get t
   )
+(leaf bbatsov/projectile
+  :el-get t
+  :config
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  )
 (leaf neotree
   :el-get t
+  :after projectile
   :bind
   (
-   ("<f8>" . neotree-toggle)
+   ("<f8>" . neotree-project-dir)
    )
   :config
   (setq-default neo-show-hidden-files t)
   (setq neo-create-file-auto-open t)
   (setq-default neo-keymap-style 'concise)
   (setq neo-theme 'icons)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
   :hook
   (neo-after-create .
                     (lambda (&rest _) (display-line-numbers-mode -1)))
