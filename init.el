@@ -122,3 +122,9 @@
                     (lambda (&rest _) (display-line-numbers-mode -1)))
   )
 
+(leaf tarao/el-get-lock
+  :el-get t
+  )
+
+(el-get-lock)
+(el-get-lock-unlock 'el-get-lock)
