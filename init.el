@@ -135,20 +135,13 @@
   )
 (leaf neotree
   :el-get t
-  :after projectile
+  :after
+  projectile
   :bind
   (
    ("<f8>" . neotree-project-dir)
    )
-  :config
-  (setq-default neo-show-hidden-files t)
-  (setq neo-create-file-auto-open t)
-  (setq-default neo-keymap-style 'concise)
-  (setq neo-theme 'icons)
-  (setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq projectile-known-projects-file
-      (expand-file-name "projectile-bookmarks.eld" "~/"))
+  :preface
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -161,10 +154,20 @@
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
+  :config
+  (setq-default neo-show-hidden-files t)
+  (setq neo-create-file-auto-open t)
+  (setq-default neo-keymap-style 'concise)
+  (setq neo-theme 'icons)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq projectile-known-projects-file
+        (expand-file-name "projectile-bookmarks.eld" "~/"))
   :hook
   (neo-after-create .
                     (lambda (&rest _) (display-line-numbers-mode -1)))
   )
+
 (leaf ivy
   :el-get t
   :init
@@ -195,7 +198,7 @@
   :config
   (global-company-mode t)
   (setq company-idle-delay 0.5)
- )
+  )
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
