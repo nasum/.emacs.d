@@ -123,25 +123,28 @@
   )
 (leaf bbatsov/projectile
   :el-get t
-  :bind
-  (
-   ("M-p f" . projectile--find-file)
-   ("M-p F" . projectile-switch-project)
-   ("C-F" . counsel-git-grep)
-   )
   :config
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy)
   )
 (leaf neotree
   :el-get t
-  :after
-  projectile
+  :after projectile
   :bind
   (
+   ("M-p f" . projectile--find-file)
+   ("M-p F" . projectile-switch-project)
    ("<f8>" . neotree-project-dir)
    )
-  :preface
+  :config
+  (setq-default neo-show-hidden-files t)
+  (setq neo-create-file-auto-open t)
+  (setq-default neo-keymap-style 'concise)
+  (setq neo-theme 'icons)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq projectile-known-projects-file
+      (expand-file-name "projectile-bookmarks.eld" "~/"))
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -154,20 +157,10 @@
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
-  :config
-  (setq-default neo-show-hidden-files t)
-  (setq neo-create-file-auto-open t)
-  (setq-default neo-keymap-style 'concise)
-  (setq neo-theme 'icons)
-  (setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" "~/"))
   :hook
   (neo-after-create .
                     (lambda (&rest _) (display-line-numbers-mode -1)))
   )
-
 (leaf ivy
   :el-get t
   :init
@@ -177,13 +170,12 @@
       :ensure t
       :bind (([remap isearch-forward] . swiper)))
     (leaf counsel
-      :ensure t
+      :el-get t
+      :diminish counsel-mode
       :bind (
              ([remap isearch-forward] . counsel-imenu)
              ("C-x C-r" . counsel-recentf)
              )
-      :config
-      (counsel-mode 1)
     )
   :config
   (ivy-mode 1)
@@ -191,14 +183,7 @@
   (setq enable-recursive-minibuffers t)
   (global-set-key "\C-s" 'swiper)
   )
-  )
-
-(leaf company-mode/company-mode
-  :el-get t
-  :config
-  (global-company-mode t)
-  (setq company-idle-delay 0.5)
-  )
+)
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
