@@ -142,6 +142,8 @@
   (setq neo-theme 'icons)
   (setq projectile-switch-project-action 'neotree-projectile-action)
   (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq projectile-known-projects-file
+      (expand-file-name "projectile-bookmarks.eld" "~/"))
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -158,7 +160,29 @@
   (neo-after-create .
                     (lambda (&rest _) (display-line-numbers-mode -1)))
   )
-
+(leaf ivy
+  :el-get t
+  :init
+  (leaf *ivy-requirements
+    :config
+    (leaf swiper
+      :ensure t
+      :bind (([remap isearch-forward] . swiper)))
+    (leaf counsel
+      :el-get t
+      :diminish counsel-mode
+      :bind (
+             ([remap isearch-forward] . counsel-imenu)
+             ("C-x C-r" . counsel-recentf)
+             )
+    )
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (global-set-key "\C-s" 'swiper)
+  )
+)
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
