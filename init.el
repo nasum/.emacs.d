@@ -188,7 +188,14 @@
   (setq enable-recursive-minibuffers t)
   (global-set-key "\C-s" 'swiper)
   )
-)
+  )
+
+(leaf company-mode/company-mode
+  :el-get t
+  :config
+  (global-company-mode t)
+  (setq company-idle-delay 0.5)
+ )
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
