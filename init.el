@@ -127,6 +127,7 @@
   (
    ("M-p f" . projectile--find-file)
    ("M-p F" . projectile-switch-project)
+   ("M-p /" . counsel-git-grep)
    )
   :config
   (projectile-mode +1)
@@ -173,12 +174,13 @@
       :ensure t
       :bind (([remap isearch-forward] . swiper)))
     (leaf counsel
-      :el-get t
-      :diminish counsel-mode
+      :ensure t
       :bind (
              ([remap isearch-forward] . counsel-imenu)
              ("C-x C-r" . counsel-recentf)
              )
+      :config
+      (counsel-mode 1)
     )
   :config
   (ivy-mode 1)
