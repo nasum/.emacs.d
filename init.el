@@ -127,7 +127,7 @@
   (
    ("M-p f" . projectile--find-file)
    ("M-p F" . projectile-switch-project)
-   ("M-p /" . counsel-git-grep)
+   ("C-F" . counsel-git-grep)
    )
   :config
   (projectile-mode +1)
