@@ -1,5 +1,6 @@
 (setq el-get-lock-package-versions
-      '((magit :checksum "8ba17a5df9c23e61beef3b4d4616e1f0b0c5f871")
+      '((git-gutter :checksum "db0e794fa97e4c902bbdf51b234cb68c993c71ae")
+        (magit :checksum "8ba17a5df9c23e61beef3b4d4616e1f0b0c5f871")
         (transient :checksum "e2fee1987902fb9963c85a62fa680082a878d460")
         (with-editor :checksum "6735180e73e787b79535c245b162249b70dbf841")
         (hydra :checksum "112e689f75b59398d8eca79ac6562dca12b8a959")

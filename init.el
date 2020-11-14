@@ -49,7 +49,7 @@
 (setq frame-title-format "%f")
 
 ;;行番号を常に表示する
-(global-linum-mode t)
+;;(global-linum-mode t)
 
 ;;TABの表示幅を常に4にする
 (setq-default tab-width 4)
@@ -93,6 +93,7 @@
 (el-get-bundle neotree)
 (el-get-bundle abo-abo/hydra)
 (el-get-bundle magit)
+(el-get-bundle git-gutter)
 
 ;;package settings
 
@@ -186,6 +187,18 @@
   )
 
 (leaf magit)
+(leaf git-gutter
+  :config
+  (global-git-gutter-mode t)
+  (custom-set-variables
+   '(git-gutter:modified-sign "~")
+   '(git-gutter:added-sign    "+")
+   '(git-gutter:deleted-sign  "-")
+   )
+  (set-face-background 'git-gutter:modified "#f1fa8c")
+  (set-face-foreground 'git-gutter:added "#50fa7b")
+  (set-face-foreground 'git-gutter:deleted "#ff79c6")
+  )
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
