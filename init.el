@@ -92,6 +92,7 @@
 (el-get-bundle bbatsov/projectile)
 (el-get-bundle neotree)
 (el-get-bundle abo-abo/hydra)
+(el-get-bundle magit)
 
 ;;package settings
 
@@ -183,6 +184,8 @@
   (global-set-key "\C-s" 'swiper)
   )
   )
+
+(leaf magit)
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
