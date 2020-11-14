@@ -25,36 +25,6 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-;;leaf
-(eval-and-compile
-  (when (or load-file-name byte-compile-current-file)
-    (setq user-emacs-directory
-          (expand-file-name
-           (file-name-directory (or load-file-name byte-compile-current-file))))))
-
-(eval-and-compile
-  (customize-set-variable
-   'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
-                       ("melpa" . "https://melpa.org/packages/")
-                       ("org"   . "https://orgmode.org/elpa/")))
-  (package-initialize)
-  (unless (package-installed-p 'leaf)
-    (package-refresh-contents)
-    (package-install 'leaf))
-
-  (leaf leaf-keywords
-    :ensure t
-    :init
-    ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
-    (leaf hydra :ensure t)
-    (leaf el-get :ensure t)
-    (leaf blackout :ensure t)
-
-    :config
-    ;; initialize leaf-keywords.el
-    (leaf-keywords-init)))
-
-
 ;; スタートアップメッセージを非表示
 (setq inhibit-startup-screen t)
 
@@ -110,25 +80,57 @@
 
 (provide 'init)
 
-;;packages
+;;el-get package
+(el-get-bundle tarao/el-get-lock
+  (el-get-lock)
+  (el-get-lock-unlock 'el-get-lock)
+  )
+(el-get-bundle ivy)
+(el-get-bundle abo-abo/swiper)
+(el-get-bundle domtronn/all-the-icons.el)
+(el-get-bundle memoize)
+(el-get-bundle bbatsov/projectile)
+(el-get-bundle neotree)
+(el-get-bundle abo-abo/hydra)
 
-(leaf tarao/el-get-lock
-  :el-get t
-  )
-(leaf domtronn/all-the-icons.el
-  :el-get t
-  )
-(leaf memoize
-  :el-get t
-  )
+;;package settings
+
+;;leaf
+(eval-and-compile
+  (when (or load-file-name byte-compile-current-file)
+    (setq user-emacs-directory
+          (expand-file-name
+           (file-name-directory (or load-file-name byte-compile-current-file))))))
+
+(eval-and-compile
+  (customize-set-variable
+   'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+                       ("melpa" . "https://melpa.org/packages/")
+                       ("org"   . "https://orgmode.org/elpa/")))
+  (package-initialize)
+  (unless (package-installed-p 'leaf)
+    (package-refresh-contents)
+    (package-install 'leaf))
+
+  (leaf leaf-keywords
+    :ensure t
+    :init
+    ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
+    (leaf hydra :ensure t)
+    (leaf el-get :ensure t)
+    (leaf blackout :ensure t)
+
+    :config
+    ;; initialize leaf-keywords.el
+    (leaf-keywords-init)))
+
 (leaf bbatsov/projectile
-  :el-get t
   :config
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy)
   )
+
 (leaf neotree
-  :el-get t
   :after projectile
   :bind
   (
@@ -162,15 +164,12 @@
                     (lambda (&rest _) (display-line-numbers-mode -1)))
   )
 (leaf ivy
-  :el-get t
   :init
   (leaf *ivy-requirements
     :config
     (leaf swiper
-      :ensure t
       :bind (([remap isearch-forward] . swiper)))
     (leaf counsel
-      :el-get t
       :diminish counsel-mode
       :bind (
              ([remap isearch-forward] . counsel-imenu)
@@ -183,7 +182,7 @@
   (setq enable-recursive-minibuffers t)
   (global-set-key "\C-s" 'swiper)
   )
-)
+  )
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)

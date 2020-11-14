@@ -52,3 +52,4 @@ flycheck_*.el
 /el-get/
 
 projectile-bookmarks.eld
+recentf
