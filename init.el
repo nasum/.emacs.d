@@ -40,6 +40,13 @@
 (el-get-bundle abo-abo/hydra)
 (el-get-bundle magit)
 (el-get-bundle git-gutter)
+;; lsp
+(el-get-bundle emacs-lsp/lsp-mode)
+(el-get-bundle emacs-lsp/lsp-ui)
+(el-get-bundle emacs-lsp/lsp-ivy)
+(el-get-bundle emacs-lsp/lsp-python-ms)
+(el-get-bundle flycheck)
+(el-get-bundle company-mode)
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
