@@ -47,6 +47,7 @@
 (el-get-bundle emacs-lsp/lsp-python-ms)
 (el-get-bundle flycheck)
 (el-get-bundle company-mode)
+(el-get-bundle doom-themes)
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
