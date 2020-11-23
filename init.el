@@ -48,6 +48,7 @@
 (el-get-bundle flycheck)
 (el-get-bundle company-mode)
 (el-get-bundle doom-themes)
+(el-get-bundle doom-modeline)
 
 (el-get-lock)
 (el-get-lock-unlock 'el-get-lock)
