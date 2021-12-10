@@ -85,3 +85,9 @@
 
 (require 'init-loader)
 (init-loader-load (concat user-emacs-directory "inits"))
+
+;; for Mac
+(setq mac-option-key-is-meta nil)
+(setq mac-command-key-is-meta t)
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier nil)
