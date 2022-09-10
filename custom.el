@@ -7,8 +7,8 @@
  '(git-gutter:deleted-sign "-")
  '(git-gutter:modified-sign "~")
  '(package-selected-packages
-   (quote
-    (dap-mode lsp-ivy swiper counsel ivy blackout el-get hydra leaf-keywords leaf))))
+   '(dap-mode lsp-ivy swiper counsel ivy blackout el-get hydra leaf-keywords leaf))
+ '(warning-suppress-types '((el-get))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
